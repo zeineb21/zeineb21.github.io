@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script language="javascript">
+    function Moyenne(form){
+    var DC1= document.form.n1.value;
+    var DC2= document.form.n2.value;
+    var DS= document.form.n3.value;
+    var C1= document.form.c1.value;
+    var C2= document.form.c2.value;
+    var C3= document.form.c3.value;
+    var moy;
+    moy=(parseFloat(DC1)*parseInt(C1)+parseFloat(DC2)*parseInt(C2)+parseFloat(DS)*parseInt(C3))/(parseInt(C1)+parseInt(C2)+parseInt(C3));
+    document.write("la moyenne est : "+moy);
+}
+    </script>
+    <title>Exercice2</title>
+</head>
+<body>
+    <script language="javascript">
+        DC1=Number(prompt("Donner  DC1 : ",""));
+        C1=Number(prompt("Donner  C1 : ",""));
+        DC2=Number(prompt("Donner  DC2 : ",""));
+        C2=Number(prompt("Donner  C2 : ",""));
+        DS= Number(prompt("Donner  DS : ",""));
+        C3=Number(prompt("Donner  C3 : ",""));
+        moy=(DC1*C1+DC2*C2+DS*C3)/(C1+C2+C3);
+        document.write("la moyenne est : "+moy);
+    </script>
+   <form name="form">
+       <label>DC1: </label><input type="number" name="n1" placeholder="Donner la note du DC1"> <br>
+       <label>Coeff DC1: </label><input type="number" name="c1" placeholder="Donner le coefficient du DC1"> <br>
+       <label>DC2: </label><input type="number" name="n2" placeholder="Donner la note du DC2"> <br>
+       <label>Coeff DC2: </label><input type="number" name="c2" placeholder="Donner le coefficient du DC2"> <br>
+       <label>DS: </label><input type="number" name="n3" placeholder="Donner la note du DS"> <br>
+       <label>Coeff DS: </label><input type="number" name="c3" placeholder="Donner le coefficient du DS"> <br>
+
+       <button type="button" name="btn" onclick="Moyenne(form)">Calculer</button>
+   </form>
+</body>
+</html>

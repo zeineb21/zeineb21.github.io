@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="./jQueryAssets/jquery-1.11.1.min.js"></script>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>To Do List</h2>
+
+        <form id="formulaire">
+
+            <label for="titre_tache">Titre de tâche:</label>
+            <input type="text" id="titre_tache">
+
+            <label for="date_tache">Date </label>
+            <input type="date" id="date_tache">
+
+            <label for="texte">Description</label>
+            <textarea id="descript"></textarea>
+
+            <label for="etat_tache">Importance</label>
+            <input type="range" id="etat_tache" min="0" max="10" step="1">
+
+
+            <input type="button" id="submitBtn" value="Ajouter" />
+            <input type="button" id="initBtn" value="SupprimerTT" />
+        </form>
+
+        <br/>
+
+        <table border=2 id="tacheListe">
+
+        </table>
+
+    </div>
+    <script>
+        $(document).ready(function() {
+
+
+
+            $("#initBtn").click(function() {
+
+                if (localStorage.TodoListe) {
+                    alert(" vous allez Tout initialiser :" + localStorage.TodoListe);
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    $('table').html("");
+                }
+            });
+
+
+            $("#submitBtn").click(function() {
+
+                var Todo = {
+                    titre: "",
+                    desc: "",
+                    date: "",
+                    importance: 0,
+                };
+                // initialisation de l'Objet Todo 
+
+                Todo.titre = $("#titre_tache").val();
+                Todo.desc = $("#descript").val();
+                Todo.date = $("#date_tache").val();
+                Todo.importance = $("#etat_tache").val();
+
+
+                if (!localStorage.TodoListe) {
+                    var TodoListe_Tab = []; // définition du tableau TodoListe_Tab
+                    TodoListe_Tab.push(Todo); // Ajouter Todo au tableau TodoListe_Tab
+                    localStorage.TodoListe = JSON.stringify(TodoListe_Tab); //Envoyer le contenu du tableau en mémoire
+                } else {
+                    var recupTodoListe = JSON.parse(localStorage.TodoListe); // recuperer la chaine TodoListe sauvegardée et la retransforme en tableau
+                    var TodoListe_Tab = recupTodoListe.splice(0); //permet de créer une copie d'un array à partir d'indice 0 
+                    TodoListe_Tab.push(Todo); // Ajouter Todo au tableau TodoListe_Tab
+
+                    //On remplace le tableau en mémoire en transformant le JSON en chaine de caracteres
+
+                    localStorage.TodoListe = JSON.stringify(TodoListe_Tab);
+                }
+                $('table').html(""); // suprimer le contenue de la table 
+
+                for (var i = 0; i < TodoListe_Tab.length; i++) {
+
+                    // Créer les lignes dans la table pour chaque tache
+
+                    $('table').append('<tr>' + '<td>' + TodoListe_Tab[i].titre + '</td>' +
+                        '<td>' + TodoListe_Tab[i].date + '</td>' +
+                        '<td>' + TodoListe_Tab[i].desc + '</td>' +
+                        '<td>' + TodoListe_Tab[i].importance + '</td>'
+
+                        +
+                        '</tr>');
+
+                }
+
+
+                $("#formulaire")[0].reset(); // Réinitialiser le formulaire avec Jquery
+
+            });
+
+        });
+    </script>
+</body>
+
+
+</html>

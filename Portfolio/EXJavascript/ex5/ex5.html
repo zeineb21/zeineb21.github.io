@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FORMATION</title>
+        <script language ="JavaScript" src="ex5.js"></script>
+        <link rel="stylesheet" href="ex5.css">
+     </head>
+     <body class="container">
+         <h2>
+             <u>INSCRIPTION</u>
+            </h2>
+            <br>
+            <form name="form" action="sauvegarder.html" method="post" onSubmit="return verif()">   
+                <pre>
+                 Nom et Prénom *:<input type="text" size="30" name="nom"> <br><br> 
+                           CIN *:<input type="text" size="10" name="cin"><br><br> 
+                Adresse e-mail *:<input type="text" size="30" name="email"> <br><br>
+                          Niveau: 
+                                 <input type="radio" name="r" checked value="1"> Secondaire  <input type="radio" name="r" value="2"> Universitaire  <input type="radio" name="r" value="3"> Autre
+                
+             Modules de formation :  <br>
+                                  <SELECT name="list" multiple size="3" >
+                                  <OPTION VALUE="Bureautique" >Bureautique</OPTION>
+                                  <OPTION VALUE="SE et Réseaux info.">SE et Réseaux info.</OPTION>
+                                  <OPTION VALUE="TIC">TIC</OPTION>
+                                  <OPTION VALUE="Programmation">Programmation</OPTION>
+                                  </SELECT>
+                                  <br><br>
+                                                               (*) Champs obligatoire. <br>
+                                      <input type="submit" value="Envoyer">  <input type="reset" value="Annuler"></pre>
+            </form>
+     </body>
+</html>
